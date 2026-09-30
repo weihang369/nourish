@@ -23,8 +23,8 @@ export function EmptyState({ emoji, title, body, children }: EmptyStateProps) {
         <span aria-hidden className="absolute inset-3 rounded-full bg-surface shadow-card ring-1 ring-line" />
         <span aria-hidden className="relative text-[34px]">{emoji}</span>
       </div>
-      <h3 className="mt-5 font-display text-[22px] leading-tight font-medium">{title}</h3>
-      <p className="mt-2 max-w-[260px] text-[14px] leading-relaxed text-ink-2">{body}</p>
+      <h3 className="mt-5 font-display text-[22px] leading-tight font-medium text-balance">{title}</h3>
+      <p className="mt-2 max-w-[270px] text-[14px] leading-relaxed text-pretty text-ink-2">{body}</p>
       {children && <div className="mt-5 flex flex-wrap justify-center gap-2">{children}</div>}
     </motion.div>
   )

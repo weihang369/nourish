@@ -22,7 +22,7 @@ export function Chip({ selected, onClick, icon, children, className, size = 'md'
       onClick={onClick}
       className={cn(
         'inline-flex shrink-0 items-center gap-1.5 rounded-full font-medium whitespace-nowrap transition-colors duration-300',
-        size === 'md' ? 'h-9 px-4 text-[13px]' : 'h-7 px-3 text-xs',
+        size === 'md' ? 'h-10 px-4 text-[13px]' : 'h-7 px-3 text-xs',
         selected ? 'bg-ink text-canvas' : 'bg-surface text-ink-2 ring-1 ring-inset ring-line hover:text-ink',
         className,
       )}

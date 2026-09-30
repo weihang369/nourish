@@ -58,9 +58,9 @@ function ActionTile({ icon: Icon, title, hint, onClick, featured }: TileProps) {
 export function QuickActions({ onSnap, onBarcode, onQuickAdd }: QuickActionsProps) {
   return (
     <motion.div variants={stagger} initial="hidden" animate="show" className="grid grid-cols-3 gap-2.5">
-      <ActionTile icon={Camera} title="Snap a meal" hint="Instant estimate" onClick={onSnap} featured />
-      <ActionTile icon={ScanBarcode} title="Barcode" hint="Packaged foods" onClick={onBarcode} />
-      <ActionTile icon={Flame} title="Quick add" hint="Just calories" onClick={onQuickAdd} />
+      <ActionTile icon={Camera} title="Snap a meal" hint="AI estimate" onClick={onSnap} featured />
+      <ActionTile icon={ScanBarcode} title="Barcode" hint="Packaged" onClick={onBarcode} />
+      <ActionTile icon={Flame} title="Quick add" hint="Just kcal" onClick={onQuickAdd} />
     </motion.div>
   )
 }

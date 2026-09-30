@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, type Variants } from 'motion/react'
-import { type ReactElement, useRef, useState } from 'react'
+import { type ReactElement, Suspense, useRef, useState } from 'react'
 import { useLocation, useOutlet } from 'react-router'
 import { tabPaths } from '@/components/layout'
 import { easeOutExpo } from '@/lib/motion'
@@ -94,7 +94,9 @@ export function AnimatedOutlet() {
         exit="exit"
         className="absolute inset-0 overflow-hidden bg-canvas shadow-[-16px_0_40px_-20px_rgb(0_0_0/0.25)]"
       >
-        <Frozen>{outlet}</Frozen>
+        <Suspense fallback={null}>
+          <Frozen>{outlet}</Frozen>
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   )

@@ -16,7 +16,7 @@ export function FoodNotFound() {
         <EmptyState
           emoji="🍽️"
           title="We couldn’t find that food"
-          body="It may have been renamed or removed. Search the library and you’ll likely spot it."
+          body="It may have been renamed or removed. A quick search will likely turn it up."
         >
           <Button leading={<Search className="size-4" />} onClick={() => navigate('/log', { replace: true })}>
             Search foods

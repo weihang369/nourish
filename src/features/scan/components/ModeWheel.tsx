@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn'
 import { spring } from '@/lib/motion'
 import { type ScanMode, scanModes } from '../types'
 
-const ITEM_W = 92
+const ITEM_W = 82
 
 interface ModeWheelProps {
   value: ScanMode
@@ -23,7 +23,7 @@ export function ModeWheel({ value, onChange }: ModeWheelProps) {
     <motion.div
       role="radiogroup"
       aria-label="Scan mode"
-      className="relative h-11 w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_24%,#000_76%,transparent)]"
+      className="relative h-11 w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_16%,#000_84%,transparent)]"
       style={{ touchAction: 'pan-y' }}
       onPanEnd={(_, info) => {
         if (info.offset.x < -28) shift(1)

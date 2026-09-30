@@ -94,6 +94,6 @@ export interface ScoreBand {
 export function scoreBand(score: number): ScoreBand {
   if (score >= 85) return { label: 'Excellent', blurb: 'Nutrient-dense, minimally processed.', tone: 'excellent' }
   if (score >= 70) return { label: 'Good', blurb: 'A solid everyday choice.', tone: 'good' }
-  if (score >= 50) return { label: 'Fair', blurb: 'Fine in balance — watch the sodium.', tone: 'fair' }
+  if (score >= 50) return { label: 'Fair', blurb: 'Fine in balance alongside whole foods.', tone: 'fair' }
   return { label: 'Enjoy mindfully', blurb: 'Best as an occasional treat.', tone: 'limit' }
 }

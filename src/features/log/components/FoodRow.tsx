@@ -58,7 +58,6 @@ export function FoodRow({ food, added, onToggle, onOpen, highlight }: FoodRowPro
           </span>
           <span className="mt-0.5 flex items-center gap-2 text-[12.5px] text-ink-2">
             <span className="truncate tabular">
-              {food.brand ? `${food.brand} · ` : ''}
               {food.serving.label} · {formatInt(food.nutrients.kcal)} kcal
             </span>
             <ScoreBadge score={food.score} className="h-5 shrink-0 pr-2 pl-1.5 text-[10.5px]" />
