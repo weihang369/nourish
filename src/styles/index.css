@@ -1,0 +1,243 @@
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────────────────────────
+   Nourish design tokens
+   Raw values live in --nr-* custom properties so light/dark
+   themes swap in one place; Tailwind utilities read them via
+   `@theme inline` (bg-surface, text-ink-2, bg-protein/15 …).
+   ───────────────────────────────────────────────────────────── */
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-scan: scan 2.4s var(--ease-out-expo) infinite alternate;
+  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes scan {
+    from { transform: translateY(0); }
+    to { transform: translateY(var(--scan-distance, 280px)); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--nr-canvas);
+  --color-surface: var(--nr-surface);
+  --color-surface-2: var(--nr-surface-2);
+  --color-surface-3: var(--nr-surface-3);
+  --color-ink: var(--nr-ink);
+  --color-ink-2: var(--nr-ink-2);
+  --color-ink-3: var(--nr-ink-3);
+  --color-line: var(--nr-line);
+
+  --color-brand: var(--nr-brand);
+  --color-brand-ink: var(--nr-brand-ink);
+  --color-brand-soft: var(--nr-brand-soft);
+  --color-deep: var(--nr-deep);
+  --color-on-deep: var(--nr-on-deep);
+  --color-lime: var(--nr-lime);
+  --color-ember: var(--nr-ember);
+  --color-water: var(--nr-water);
+
+  /* Macro palette — validated for CVD separation in both themes */
+  --color-protein: var(--nr-protein);
+  --color-carbs: var(--nr-carbs);
+  --color-fat: var(--nr-fat);
+  --color-fiber: var(--nr-fiber);
+
+  --shadow-card: var(--nr-shadow-card);
+  --shadow-float: var(--nr-shadow-float);
+  --shadow-glow: var(--nr-shadow-glow);
+}
+
+:root {
+  --nr-canvas: #f3efe6;
+  --nr-surface: #fffdf8;
+  --nr-surface-2: #ede8dd;
+  --nr-surface-3: #e2dccf;
+  --nr-ink: #14201a;
+  --nr-ink-2: #4a5650;
+  --nr-ink-3: #858f89;
+  --nr-line: rgb(20 32 26 / 0.08);
+
+  --nr-brand: #1e5a42;
+  --nr-brand-ink: #ffffff;
+  --nr-brand-soft: #dcebdf;
+  --nr-deep: #16372a;
+  --nr-on-deep: #f1f5ec;
+  --nr-lime: #c6ee6b;
+  --nr-ember: #ea7430;
+  --nr-water: #2f95d6;
+
+  --nr-protein: #e14f6e;
+  --nr-carbs: #c4850c;
+  --nr-fat: #5a6fe0;
+  --nr-fiber: #2a8a5a;
+
+  --nr-shadow-card: 0 1px 2px rgb(20 32 26 / 0.04), 0 12px 32px -16px rgb(20 32 26 / 0.14);
+  --nr-shadow-float: 0 2px 6px rgb(20 32 26 / 0.06), 0 24px 48px -16px rgb(20 32 26 / 0.28);
+  --nr-shadow-glow: 0 10px 30px -8px rgb(30 90 66 / 0.55);
+
+  /* Phone chrome — overridden by DeviceFrame on real devices */
+  --sat: 54px; /* safe area top */
+  --sab: 28px; /* safe area bottom */
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --nr-canvas: #0b0e0c;
+  --nr-surface: #141916;
+  --nr-surface-2: #1b221e;
+  --nr-surface-3: #252e29;
+  --nr-ink: #eef2eb;
+  --nr-ink-2: #a8b2ab;
+  --nr-ink-3: #6f7a73;
+  --nr-line: rgb(238 242 235 / 0.08);
+
+  --nr-brand: #b5e27a;
+  --nr-brand-ink: #0e1a12;
+  --nr-brand-soft: #1f3326;
+  --nr-deep: #182c22;
+  --nr-on-deep: #eef5e9;
+  --nr-lime: #c6ee6b;
+  --nr-ember: #f08a48;
+  --nr-water: #4fb0ea;
+
+  --nr-protein: #e14f6e;
+  --nr-carbs: #c4850c;
+  --nr-fat: #5a6fe0;
+  --nr-fiber: #2a8a5a;
+
+  --nr-shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 12px 32px -18px rgb(0 0 0 / 0.7);
+  --nr-shadow-float: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 24px 48px -16px rgb(0 0 0 / 0.8);
+  --nr-shadow-glow: 0 10px 30px -8px rgb(181 226 122 / 0.35);
+
+  color-scheme: dark;
+}
+
+/* ───────────── Base ───────────── */
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.4s var(--ease-out-expo);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--nr-brand);
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--nr-lime) 70%, transparent);
+    color: #14201a;
+  }
+}
+
+/* ───────────── Utilities ───────────── */
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility font-display {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+@utility pt-safe {
+  padding-top: var(--sat);
+}
+
+@utility pb-safe {
+  padding-bottom: var(--sab);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--nr-surface) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+}
+
+@utility glass-dark {
+  background: rgb(10 14 12 / 0.38);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+@utility skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--nr-surface-2) 0%,
+    var(--nr-surface-3) 50%,
+    var(--nr-surface-2) 100%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  }
+}
+
+@utility snap-x {
+  scroll-snap-type: x mandatory;
+  & > * {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
